@@ -2,10 +2,15 @@
     <div class="box">
         <div class="columns">
             <div class="column is-8" role="form" aria-label="Formulario para criação de uma nova tarefa">
-                <input type="text" class="input" placeholder="Qual tarefa você deseja incluir?">
+                <input 
+                    type="text" 
+                    class="input" 
+                    placeholder="Qual tarefa você deseja incluir?" 
+                    v-model="descricao"
+                >
             </div>
             <div class="column">
-                <Temporizador />
+                <Temporizador @aoTemporizadorFinalizado="finalizarTarefa"/>
             </div>
         </div>
     </div>
@@ -19,10 +24,17 @@
         name: "FormularioVue",
         components: {
             Temporizador
+        },
+        data() {
+            return {
+                descricao: ''
+            }
+        },
+        methods: {
+            finalizarTarefa(tempoDecorrido: number) : void {
+                this.descricao = ''                                
+            }
         }
     })
 </script>
 
-<style>
-
-</style>
