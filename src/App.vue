@@ -1,9 +1,9 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline modo-escuro">
     <div class="clumn is-one-quarter">
       <BarraLateralVue />
     </div>   
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter conteudo">
       <FormularioVue @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
         <TarefaVue v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa"/>
@@ -52,5 +52,16 @@
 <style>
 .lista {
   padding: 1.25rem;
+}
+main {
+  --bg-primario: #fff;
+  --texto-primario: #000;
+}
+main.modo-escuro {
+  --bg-primario: #2b2d42;
+  --texto-primario: #ddd;
+}
+.conteudo {
+  background-color: var(--bg-primario);
 }
 </style>
