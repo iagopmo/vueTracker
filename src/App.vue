@@ -7,6 +7,9 @@
       <FormularioVue @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
         <TarefaVue v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa"/>
+        <BoxVue v-if="listaEstaVazia">
+          Você não está muito produtivo hoje. =(
+        </BoxVue>
       </div>
     </div> 
   </main>
@@ -18,17 +21,24 @@
   import FormularioVue from './components/Formulario.vue'
   import TarefaVue from './components/Terefa.vue'
   import ITarefa from './interfaces/ITarefa'
+  import BoxVue from './components/Box.vue'
 
   export default defineComponent({
     name: 'App',
     components: {
       BarraLateralVue,
       FormularioVue,
-      TarefaVue
+      TarefaVue,
+      BoxVue
     },
     data() {
       return {
         tarefas: [] as ITarefa[]
+      }
+    },
+    computed: {
+      listaEstaVazia() : boolean{
+        return this.tarefas.length === 0
       }
     },
     methods: {
