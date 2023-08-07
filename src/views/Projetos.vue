@@ -5,7 +5,7 @@
         <form @submit.prevent="salvar">
             <div class="field">
                 <label for="nomeDoProjeto" class="label">Nome do Projeto</label>
-                <imput 
+                <input 
                     class="input"
                     type="text"
                     v-model="nomeDoProjeto"
