@@ -1,34 +1,31 @@
 <template>
     <section class="projetos">
         <h1 class="title">Projetos</h1>
-        <!-- ouve o evento de submite, prevenindo o comportamento padrão que submete e recarrega a pagina-->
-        <form @submit.prevent="salvar">
-            <div class="field">
-                <label for="nomeDoProjeto" class="label">Nome do Projeto</label>
-                <input 
-                    class="input"
-                    type="text"
-                    v-model="nomeDoProjeto"
-                    id="nomeDoProjeto"
-                />
-            </div>
-            <div class="field">
-                <button class="button" type="submit">
-                    Salvar
-                </button>
-            </div>
-        </form>
+        <router-link to="/projetos/novo" class="button">
+            <span class="icon is-small">
+              <i class="fas fa-plus"></i>
+            </span>
+            <span>Novo projeto</span>
+          </router-link>  
         <table class="table is-fullwidth">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>NOME</th>
+                    <th>AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="projeto in projetos" :key="projeto.id">
                     <td>{{ projeto.id }}</td>
                     <td>{{ projeto.nome }}</td>
+                    <td>
+                        <router-link :to="`/projetos/${projeto.id}`" class="button">
+                            <span class="icon is-small">
+                              <i class="fas fa-pencil-alt"></i>
+                            </span>
+                        </router-link>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -41,21 +38,9 @@ import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
     name: 'ProjetosView',
-    data() {
-        return {
-            nomeDoProjeto: ""
-        }
-    },
-    methods: {
-        salvar() {
-            this.store.commit('ADICIONA_PROJETO', this.nomeDoProjeto)
-            this.nomeDoProjeto = ''
-        }
-    },
     setup() {
         const store = useStore()
-        return {
-            store,
+        return {            
             projetos: computed(() => store.state.projetos)
         }
     }
