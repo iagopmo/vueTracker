@@ -1,6 +1,5 @@
 <template>
-    <section class="projetos">
-        <h1 class="title">Projetos</h1>
+    <section>
         <!-- ouve o evento de submite, prevenindo o comportamento padrão que submete e recarrega a pagina-->
         <form @submit.prevent="salvar">
             <div class="field">
@@ -65,9 +64,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-.projetos {
-    padding: 1.25rem;
-}
-</style>
