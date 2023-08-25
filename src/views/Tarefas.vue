@@ -9,11 +9,12 @@
   </template>
   
   <script lang="ts">
-    import { defineComponent } from 'vue';
+    import { computed, defineComponent } from 'vue';
     import FormularioVue from '../components/Formulario.vue'
     import TarefaVue from '../components/Terefa.vue'
-    import ITarefa from '../interfaces/ITarefa'
     import BoxVue from '../components/Box.vue'
+    import { useStore } from '@/store';
+    import { OBTER_TAREFAS } from '@/store/tipo-acoes'
   
     export default defineComponent({
       name: 'App',
@@ -22,21 +23,25 @@
         TarefaVue,
         BoxVue
       },
-      data() {
-        return {
-          tarefas: [] as ITarefa[]
-        }
-      },
-      computed: {
-        listaEstaVazia() : boolean{
-          return this.tarefas.length === 0
-        }
-      },
       methods: {
-        salvarTarefa(tarefa: ITarefa) {
-          this.tarefas.push(tarefa)
+        // salvarTarefa(tarefa: ITarefa) {
+          //   this.tarefas.push(tarefa)
+          // }
+        },
+        computed: {
+          listaEstaVazia() : boolean{
+            return this.tarefas.length === 0
+          }
+        },
+        setup() {
+          const store = useStore()
+          store.dispatch(OBTER_TAREFAS)
+
+          return {            
+            tarefas: computed(() => store.state.tarefas),
+            store
+          }
         }
-      }
     })
   </script>
   

@@ -8,5 +8,15 @@
       "nome": "Estudar VueJs",
       "id": 2
     }
+  ],
+  "tarefas": [
+    {
+      "duracaoEmSegundos": 120,
+      "descricao": "Configurando o ambiente",
+      "projeto": {
+        "id": "1",
+        "nome": "Alura tracker 3.0"
+      }
+    }
   ]
 }
